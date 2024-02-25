@@ -15,7 +15,15 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pl">
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				{" "}
+				<section className="mx-auto max-w-md p-12 sm:max-w-2xl sm:py-16 md:max-w-4xl	lg:max-w-7xl">
+					{children}
+				</section>
+				<footer>
+					<p className="text-center text-gray-600">© {new Date().getFullYear()} bmDEV</p>
+				</footer>
+			</body>
 		</html>
 	);
 }
