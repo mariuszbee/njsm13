@@ -1,6 +1,3 @@
-import { products } from "../../utils/exampeData";
-import { ProductList } from "@/ui/organisms/ProductList";
-
-export default function Home() {
-	return <ProductList products={products} />;
+export default function HomePage() {
+	return <h1>Home Page</h1>;
 }
