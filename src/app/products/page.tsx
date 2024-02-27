@@ -1,6 +1,8 @@
-import { products } from "@utils/exampeData";
+//import { products } from "@utils/exampeData";
+import { getProductsList } from "@/api/products";
 import { ProductList } from "@/ui/organisms/ProductList";
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+	const products = await getProductsList();
 	return <ProductList products={products} />;
 }
