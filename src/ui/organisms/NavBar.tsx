@@ -1,3 +1,4 @@
+import type { Route } from "next";
 import { ActiveLink } from "../atoms/ActiveLink";
 
 export const NavBar = () => {
@@ -15,7 +16,7 @@ export const NavBar = () => {
 				</li>
 				<li>
 					<ActiveLink
-						href="/products"
+						href={"/products" as Route}
 						activeClassName="border-2 border-lime-600 p-2"
 						className="text-lime-600 hover:text-lime-400"
 					>
