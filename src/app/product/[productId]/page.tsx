@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { getProduct, getProductsList } from "@/api/products";
+import { getProduct } from "@/api/products";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { ProductItemDescription } from "@/ui/atoms/ProductItemDescription";
 import { SuggestedProductsList } from "@/ui/organisms/SuggestedProductsList";
