@@ -16,6 +16,7 @@ export const NavBar = () => {
 				</li>
 				<li>
 					<ActiveLink
+						exact={false}
 						href={"/products" as Route}
 						activeClassName="border-2 border-lime-600 p-2"
 						className="text-lime-600 hover:text-lime-400"
