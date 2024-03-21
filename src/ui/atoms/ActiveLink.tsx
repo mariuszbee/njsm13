@@ -22,10 +22,12 @@ export const ActiveLink = <T extends string>({
 	exact = true,
 }: ActiveLinkProps<T>) => {
 	const pathName = usePathname();
-	const isExact = exact ? pathName === href : pathName.startsWith(href);
+	const hrefPath = href.split("?")[0];
 
 	// Dodaj activeClassName, jeśli ścieżka jest taka sama
-	const isActive = isExact;
+	const isActive = exact
+		? pathName === href
+		: typeof pathName === "string" && pathName.startsWith(hrefPath);
 
 	return (
 		<Link
