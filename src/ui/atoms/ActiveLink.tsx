@@ -12,6 +12,7 @@ type ActiveLinkProps<T extends string> = {
 	activeClassName?: string;
 	className?: string;
 	exact?: boolean;
+	disabled?: boolean;
 };
 
 export const ActiveLink = <T extends string>({
@@ -20,6 +21,7 @@ export const ActiveLink = <T extends string>({
 	activeClassName,
 	className,
 	exact = true,
+	disabled,
 }: ActiveLinkProps<T>) => {
 	const pathName = usePathname();
 	const hrefPath = href.split("?")[0];
@@ -27,7 +29,7 @@ export const ActiveLink = <T extends string>({
 	// Dodaj activeClassName, jeśli ścieżka jest taka sama
 	const isActive = exact
 		? pathName === href
-		: typeof pathName === "string" && pathName.startsWith(hrefPath);
+		: typeof hrefPath === "string" && pathName.startsWith(hrefPath);
 
 	return (
 		<Link
@@ -35,8 +37,10 @@ export const ActiveLink = <T extends string>({
 			className={clsx(
 				className || `text-lime-600 hover:text-lime-400`,
 				isActive && (activeClassName || `border-2 border-lime-600 p-2`),
+				{ "pointer-events-none text-slate-300": disabled },
 			)}
 			aria-current={isActive ? "page" : undefined}
+			aria-disabled={disabled}
 		>
 			{children}
 		</Link>
