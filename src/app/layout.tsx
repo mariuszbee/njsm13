@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://njsm13.vercel.app"),
-	title: "sample e-commerce project",
+	title: "njsm13 e-comers project",
 	description: "some other description",
 };
 
