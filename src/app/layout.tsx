@@ -8,9 +8,9 @@ import { Navbar } from "@/ui/oragnism/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	metadataBase: new URL("http://localhost:3000"),
-	title: "Example e-commerce project",
-	description: "Project created for the course NEXT.JS MASTERS",
+	metadataBase: new URL("https://njsm13.vercel.app"),
+	title: "sample e-commerce project",
+	description: "some other description",
 };
 
 export default function RootLayout({

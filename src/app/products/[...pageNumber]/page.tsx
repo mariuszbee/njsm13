@@ -60,13 +60,7 @@ export default async function ProductsPage({
 				<div>
 					<ProductsHeader pageNumber={params.pageNumber} />
 					<h2 className="sr-only">Products</h2>
-					<div>
-						<ProductsPagination
-							numberPages={numberPages}
-							currentPage={currentPage}
-							url={`/products`}
-						/>
-					</div>
+
 					<Suspense fallback={<Spinner />}>
 						<ProductList products={products.data} />
 					</Suspense>
