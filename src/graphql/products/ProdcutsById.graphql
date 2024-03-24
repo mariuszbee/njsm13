@@ -1,0 +1,22 @@
+query ProdcutsById($id: ID) {
+	product(id: $id) {
+		id
+		name
+		categories {
+			name
+			slug
+		}
+		price
+		description
+		images {
+			url
+			alt
+			height
+			width
+		}
+		rating
+		reviews {
+			...ReviewItem
+		}
+	}
+}
