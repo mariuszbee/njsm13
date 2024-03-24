@@ -1,5 +1,5 @@
 {
-	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.tsdk": "node_modules/typescript/lib", //important setting, uses local typescript version
 	"tailwindCSS.classAttributes": ["className", "tw", "clerkAppearance.*"],
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -10,9 +10,10 @@
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "always"
 	},
-	"graphql-config.dotEnvPath": "./.env",
-	"graphql-config.load.configName": "graphql",
 	"editor.quickSuggestions": {
 		"strings": true
-	}
+	},
+	"graphql-config.dotEnvPath": "./.env",
+	"window.zoomLevel": 0.5,
+	"terminal.integrated.mouseWheelZoom": true
 }

@@ -1,40 +1,40 @@
+import { notFound } from "next/navigation";
+import { type Metadata } from "next";
 import { Suspense } from "react";
-import { getProduct } from "@/api/products";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
-import { ProductItemDescription } from "@/ui/atoms/ProductItemDescription";
-import { SuggestedProductsList } from "@/ui/organisms/SuggestedProductsList";
+import { getProductsById } from "@/api/prodcuts";
+import { Spinner } from "@/ui/atoms/Spinner";
+import { SingleProductPage } from "@/ui/oragnism/SingleProductPage";
+
+export const generateMetadata = async ({
+	params,
+}: {
+	params: { productId: string };
+}): Promise<Metadata> => {
+	const product = await getProductsById(params.productId);
+	return {
+		title: product.product?.name,
+		description: product.product?.description,
+	};
+};
 
 // export const generateStaticParams = async () => {
-// 	const products = await getProductsList();
+// 	const products = await getProductsList(20);
 // 	return products.map((product) => ({
 // 		productId: product.id,
 // 	}));
 // };
 
-export const generateMetadata = async ({ params }: { params: { productId: string } }) => {
-	const product = await getProduct(params.productId);
-	return {
-		title: product.name,
-		description: product.description,
-	};
-};
+export default async function SingleProductIdPage({ params }: { params: { productId: string } }) {
+	const product = await getProductsById(params.productId);
+	if (!product.product) {
+		throw notFound();
+	}
 
-export default async function SingleProductPage({ params }: { params: { productId: string } }) {
-	const product = await getProduct(params.productId);
 	return (
-		<>
-			<article className="max-w-sm">
-				<h1>{product.name}</h1>
-				<ProductCoverImage {...product.coverImage} />
-				<ProductItemDescription product={product} />
-				<p>{product.description}</p>
-			</article>
-			<aside className="mt-12">
-				<Suspense fallback={"Ładowanie..."}>
-					<h2 className="py-6">Sugerowane produkty:</h2>
-					<SuggestedProductsList />
-				</Suspense>
-			</aside>
-		</>
+		<article>
+			<Suspense fallback={<Spinner />}>
+				<SingleProductPage productId={product.product.id} />
+			</Suspense>
+		</article>
 	);
 }

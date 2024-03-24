@@ -1,48 +1,40 @@
 "use client";
-
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import type { ReactNode } from "react";
-import type { Route } from "next";
 import clsx from "clsx";
-
-type ActiveLinkProps<T extends string> = {
-	children: ReactNode;
-	href: Route<T>;
-	activeClassName?: string;
-	className?: string;
-	exact?: boolean;
-	disabled?: boolean;
-};
+import { usePathname } from "next/navigation";
+import { type ReactNode } from "react";
+import { type Route } from "next";
 
 export const ActiveLink = <T extends string>({
-	children,
 	href,
-	activeClassName,
-	className,
-	exact = true,
-	disabled,
-}: ActiveLinkProps<T>) => {
-	const pathName = usePathname();
-	const hrefPath = href.split("?")[0];
+	exact,
+	children,
+}: {
+	href: Route<T>;
+	exact: boolean;
+	children: ReactNode;
+}) => {
+	const currentPathname = usePathname();
 
-	// Dodaj activeClassName, jeśli ścieżka jest taka sama
 	const isActive = exact
-		? pathName === href
-		: typeof hrefPath === "string" && pathName.startsWith(hrefPath);
+		? currentPathname === href.split("?")[0]
+		: currentPathname.startsWith(href) &&
+			(currentPathname[href.length] === "/" || currentPathname.length === href.length);
 
 	return (
 		<Link
 			href={href}
 			className={clsx(
-				className || `text-lime-600 hover:text-lime-400`,
-				isActive && (activeClassName || `border-2 border-lime-600 p-2`),
-				{ "pointer-events-none text-slate-300": disabled },
+				"flex h-full items-center border-b-2 px-4 py-2 text-gray-800",
+				(isActive && "border-yellow-600 text-yellow-600 hover:border-yellow-600") ||
+					"border-transparent hover:border-yellow-300",
 			)}
 			aria-current={isActive ? "page" : undefined}
-			aria-disabled={disabled}
 		>
 			{children}
 		</Link>
 	);
 };
+
+// className={clsx(`brightness-90`, {brightness-100: isActive})}
+//  lassName={clsx(`brightness-90`, isActive && `)}
