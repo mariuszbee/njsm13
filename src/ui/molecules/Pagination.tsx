@@ -1,3 +1,5 @@
+"use client";
+
 import type { Route } from "next";
 import { useSearchParams } from "next/navigation";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
